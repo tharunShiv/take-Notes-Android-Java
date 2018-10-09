@@ -1,11 +1,15 @@
 package soon.domain.one.take_notes;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+
+import java.util.HashSet;
 
 public class NoteEditorActivity extends AppCompatActivity {
 
@@ -47,6 +51,12 @@ public class NoteEditorActivity extends AppCompatActivity {
                 // lets update the array
                 MainActivity.notes.set(noteId, String.valueOf(charSequence));
                 MainActivity.arrayAdapter.notifyDataSetChanged();
+
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("soon.domain.one.take_notes", Context.MODE_PRIVATE);
+                // we'll use Set
+                HashSet<String> set = new HashSet<>(MainActivity.notes);
+                // set wont maintain the order
+                sharedPreferences.edit().putStringSet("notes", set).apply();
             }
 
             @Override
