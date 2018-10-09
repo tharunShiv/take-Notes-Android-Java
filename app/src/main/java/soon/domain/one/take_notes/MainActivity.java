@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<String> notes = new ArrayList<>();
+    // to access this at the next intent
+    static ArrayList<String> notes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
